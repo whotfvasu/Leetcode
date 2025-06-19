@@ -1,8 +1,10 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
+
         map<char,int> mpp;
         int n = s.length();
+        if(n==1) return 1;
         for(char c: s){
             mpp[c]++;
         }
