@@ -1,10 +1,10 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *    int val;
- *    TreeNode * left;
- *    TreeNode * right;
- *    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ *int val;
+ *TreeNode * left;
+ *TreeNode * right;
+ *TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  *};
  */
 
@@ -13,18 +13,21 @@ class Solution
     public:
         TreeNode* lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
         {
-            if (!root) return root;
-            int currval = root->val;
-
-            if (p->val < currval && q->val < currval)
+            while (root)
             {
-                return lowestCommonAncestor(root->left,p,q);
+                if (min(p->val, q->val) > root->val)
+                {
+                    root = root->right;
+                }
+                else if (max(p->val, q->val) < root->val)
+                {
+                    root = root->left;
+                }
+                else
+                {
+                    return root;
+                }
             }
-            else if (p->val > currval && q->val > currval)
-            {
-                return lowestCommonAncestor(root->right,p,q);
-            }
-
-            else return root;
+            return nullptr;
         }
 };
