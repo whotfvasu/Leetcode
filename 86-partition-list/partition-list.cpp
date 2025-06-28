@@ -28,6 +28,10 @@ public:
         }
         greater->next = nullptr;
         less->next = greaterhead->next;
-        return lesshead->next;
+        ListNode* result = lesshead->next;
+        delete lesshead;
+        delete greaterhead;
+        return result;
+       
     }
 };
