@@ -2,7 +2,7 @@ class Solution {
 public:
     string reverseWords(string s) {
         istringstream iss(s);
-        vector<std::string> words;
+        vector<string> words;
         string word;
         while (iss >> word) {
             reverse(word.begin(), word.end());
