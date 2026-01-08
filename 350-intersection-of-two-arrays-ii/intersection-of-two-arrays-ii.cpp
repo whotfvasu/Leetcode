@@ -1,17 +1,32 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        map<int,int>freq;
-        vector<int>ans;
-        for(int i = 0;i<nums1.size();i++){
-            freq[nums1[i]]++;
-        }
-        for(int i = 0;i<nums2.size();i++){
-            if (freq[nums2[i]] > 0){
-                freq[nums2[i]]--; 
-                ans.push_back(nums2[i]);
+        if (nums1.size() > nums2.size())
+            return intersect(nums2, nums1);
+
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+
+        vector<int> ans;
+        int i = 0;
+
+        while (i < nums1.size()) {
+            int val = nums1[i];
+
+            int cnt1 = 0;
+            while (i < nums1.size() && nums1[i] == val) {
+                cnt1++;
+                i++;
             }
+
+            int left = lower_bound(nums2.begin(), nums2.end(), val) - nums2.begin();
+            int right = upper_bound(nums2.begin(), nums2.end(), val) - nums2.begin();
+            int cnt2 = right - left;
+
+            int times = min(cnt1, cnt2);
+            while (times--) ans.push_back(val);
         }
+
         return ans;
     }
 };
