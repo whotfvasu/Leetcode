@@ -7,7 +7,6 @@ class Solution
             int n = matrix.size();
             int m = matrix[0].size();
 
-           	// Check whether first row contains a zero
             bool firstRowZero = false;
             for (int j = 0; j < m; j++)
             {
@@ -18,7 +17,6 @@ class Solution
                 }
             }
 
-           	// Check whether first column contains a zero
             bool firstColZero = false;
             for (int i = 0; i < n; i++)
             {
@@ -29,7 +27,6 @@ class Solution
                 }
             }
 
-           	// Use first row and first column as markers
             for (int i = 1; i < n; i++)
             {
                 for (int j = 1; j < m; j++)
@@ -42,7 +39,6 @@ class Solution
                 }
             }
 
-           	// Set rows to zero
             for (int i = 1; i < n; i++)
             {
                 if (matrix[i][0] == 0)
@@ -54,7 +50,6 @@ class Solution
                 }
             }
 
-           	// Set columns to zero
             for (int j = 1; j < m; j++)
             {
                 if (matrix[0][j] == 0)
@@ -66,7 +61,6 @@ class Solution
                 }
             }
 
-           	// Finally handle first row
             if (firstRowZero)
             {
                 for (int j = 0; j < m; j++)
@@ -75,7 +69,6 @@ class Solution
                 }
             }
 
-           	// Finally handle first column
             if (firstColZero)
             {
                 for (int i = 0; i < n; i++)
