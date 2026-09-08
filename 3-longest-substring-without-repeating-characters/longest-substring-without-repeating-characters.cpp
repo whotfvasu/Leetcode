@@ -10,7 +10,7 @@ public:
         for (int right = 0; right < n; right++) {
             mp[s[right]]++;
 
-            if (mp.size() < right-left+1) {
+            while (mp.size() < right-left+1) {
                 mp[s[left]]--;
 
                 if (mp[s[left]] == 0)
@@ -19,7 +19,7 @@ public:
                 left++;
             }
 
-            else{
+            if(mp.size() == right-left+1){
                 ans = max(ans, right - left + 1);
             }
         }
