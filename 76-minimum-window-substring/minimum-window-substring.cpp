@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool sahi(vector<int>& have, vector<int>& needed) {
-        for(int i = 0; i < 256; i++) {
+        for(int i = 0; i < 128; i++) {
             if(have[i] < needed[i])
                 return false;
         }
@@ -9,8 +9,8 @@ public:
     }
 
     string minWindow(string s, string t) {
-        vector<int> have(256);
-        vector<int> needed(256);
+        vector<int> have(128);
+        vector<int> needed(128);
 
         for(char c : t) {
             needed[c]++;
