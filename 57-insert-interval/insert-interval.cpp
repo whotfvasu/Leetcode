@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         int n = intervals.size();
-        sort(intervals.begin(), intervals.end());
         vector<vector<int>> res;
 
         int start1 = intervals[0][0];
@@ -25,8 +24,9 @@ public:
     }
     vector<vector<int>> insert(vector<vector<int>>& intervals,
                                vector<int>& newInterval) {
-        intervals.push_back(newInterval);
-        sort(intervals.begin(), intervals.end());
+        int pos = upper_bound(intervals.begin(), intervals.end(), newInterval) 
+          - intervals.begin();
+        intervals.insert(intervals.begin() + pos, newInterval);
         return merge(intervals);
     }
 };
