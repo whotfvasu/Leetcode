@@ -1,21 +1,32 @@
 class Solution {
 public:
-    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-         vector<vector<int>> res;
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> res;
 
-        for (const auto& interval : intervals) {
-            if (newInterval[1] < interval[0]) {
-                res.push_back(newInterval);
-                newInterval = interval;
-            } else if (newInterval[0] > interval[1]) {
-                res.push_back(interval);
-            } else {
-                newInterval[0] = min(newInterval[0], interval[0]);
-                newInterval[1] = max(newInterval[1], interval[1]);
+        int start1 = intervals[0][0];
+        int end1 = intervals[0][1];
+
+        for (int i = 0; i < n; i++) {
+            int start2 = intervals[i][0];
+            int end2 = intervals[i][1];
+            if (end1 >= start2) {
+                end1 = max(end1, end2);
+                continue;
             }
+            res.push_back({start1, end1});
+            start1 = start2;
+            end1 = end2;
         }
 
-        res.push_back(newInterval);
+        res.push_back({start1, end1});
         return res;
+    }
+    vector<vector<int>> insert(vector<vector<int>>& intervals,
+                               vector<int>& newInterval) {
+        intervals.push_back(newInterval);
+        sort(intervals.begin(), intervals.end());
+        return merge(intervals);
     }
 };
