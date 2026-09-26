@@ -3,7 +3,7 @@ class Solution
     public:
         bool isValid(string s)
         {
-            map<char, char> mpp;
+            unordered_map<char, char> mpp;
             mpp[')'] = '(';
             mpp['}'] = '{';
             mpp[']'] = '[';
