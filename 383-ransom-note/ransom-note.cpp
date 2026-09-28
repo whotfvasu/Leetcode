@@ -1,18 +1,16 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        map<char,int> mpp;
-        int n = ransomNote.length();
-        int m = magazine.length();
-        for(char c: magazine){
-            mpp[c]++;
+        vector<int> rnmpp(26);
+        vector<int> mmpp(26);
+        for(int i=0;i<ransomNote.length();i++){
+            rnmpp[ransomNote[i]-'a']++;
         }
-        for(char c: ransomNote){
-            if(mpp.find(c)!=mpp.end()){
-                mpp[c]--;
-                if(mpp[c]==0) mpp.erase(c);
-            }
-            else return false;
+        for(int i=0;i<magazine.length();i++){
+            mmpp[magazine[i]-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            if(rnmpp[i]>mmpp[i]) return false;
         }
         return true;
     }
