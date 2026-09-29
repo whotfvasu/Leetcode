@@ -1,18 +1,18 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
+        int oddCount = 0;
+        unordered_map<char, int> ump;
+        for(char ch : s) {
+            ump[ch]++;
+            if (ump[ch] % 2 == 1)
+                oddCount++;
+            else    
+                oddCount--;
+        }
+        if (oddCount > 1)
+            return s.length() - oddCount + 1;
+        return s.length();
 
-        map<char,int> mpp;
-        int n = s.length();
-        if(n==1) return 1;
-        for(char c: s){
-            mpp[c]++;
-        }
-        int sum = 0;
-        for(auto it: mpp){
-            sum+=it.second/2;
-        }
-        if(sum*2==n) return sum*2;
-        else return sum*2+1;
     }
 };
