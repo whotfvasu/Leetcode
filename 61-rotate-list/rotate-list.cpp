@@ -18,8 +18,8 @@ public:
 
         k %= size;
 
-        if (k == 0)
-            return head;
+        // if (k == 0)
+        //     return head;
 
         temp = head;
 
